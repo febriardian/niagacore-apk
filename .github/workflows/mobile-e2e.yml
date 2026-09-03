@@ -12,7 +12,7 @@ jobs:
   maestro:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download APK
         run: curl --fail --location "${{ inputs.apk_url }}" --output niagacore-test.apk
       - name: Install Maestro

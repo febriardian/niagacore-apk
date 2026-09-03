@@ -9,7 +9,7 @@ jobs:
   backup-restore:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: sudo apt-get update && sudo apt-get install -y postgresql-client
       - run: node scripts/backup-restore-drill.mjs
         env:
@@ -24,7 +24,7 @@ jobs:
   sentry-alerts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: node scripts/verify-sentry-alerts.mjs
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
