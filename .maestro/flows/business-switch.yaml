@@ -1,0 +1,17 @@
+appId: id.niagacore.app
+name: Pergantian usaha
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Lainnya"
+- tapOn: "Usaha & cabang"
+- tapOn:
+    text: "Gunakan usaha ini"
+    index: ${TEST_BUSINESS_BUTTON_INDEX}
+- extendedWaitUntil:
+    visible: ${TEST_SECOND_BUSINESS}
+    timeout: 10000

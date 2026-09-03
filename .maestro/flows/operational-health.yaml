@@ -1,0 +1,16 @@
+appId: id.niagacore.app
+name: Status sistem khusus pemilik
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Lainnya"
+- tapOn: "Status sistem"
+- assertVisible: "Ringkasan"
+- assertVisible: "LAYANAN"
+- assertVisible: "Midtrans"
+- assertVisible: "QRIS"
+- assertVisible: "AKTIVITAS SERVER"

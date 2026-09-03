@@ -1,0 +1,14 @@
+{
+  "version": "2.12.0",
+  "versionCode": 69,
+  "minimumVersionCode": 22,
+  "minimumAndroid": 29,
+  "channel": "production",
+  "apkUrl": "niagacore-latest.apk",
+  "sha256": "GENERATE_AFTER_SIGNED_BUILD",
+  "publishedAt": null,
+  "mandatory": false,
+  "releaseStatus": "awaiting_signed_apk",
+  "signatureVerified": false,
+  "paymentModel": "platform_wallet_manual_verified"
+}

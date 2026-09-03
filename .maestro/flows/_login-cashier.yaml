@@ -1,0 +1,11 @@
+appId: id.niagacore.app
+---
+- tapOn: "Email"
+- inputText: ${TEST_CASHIER_EMAIL}
+- tapOn: "Kata sandi"
+- inputText: ${TEST_CASHIER_PASSWORD}
+- hideKeyboard
+- tapOn: "Masuk"
+- extendedWaitUntil:
+    visible: "Beranda"
+    timeout: 20000

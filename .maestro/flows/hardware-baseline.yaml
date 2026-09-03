@@ -1,0 +1,16 @@
+appId: id.niagacore.app
+name: Baseline dukungan hardware
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Lainnya"
+- tapOn: "Printer & scanner"
+- assertVisible: "Printer melalui Android"
+- assertVisible: "Scanner kamera"
+- assertVisible: "Scanner HID eksternal"
+- assertVisible: "Printer ESC/POS khusus"
+- assertVisible: "Belum didukung"

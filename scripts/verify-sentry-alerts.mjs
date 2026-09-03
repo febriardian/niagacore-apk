@@ -1,0 +1,11 @@
+const required=['SENTRY_AUTH_TOKEN','SENTRY_ORG','SENTRY_PROJECT'];
+const missing=required.filter(name=>!process.env[name]?.trim());
+if(missing.length)throw new Error(`Missing ${missing.join(', ')}`);
+const base='https://sentry.io/api/0',headers={Authorization:`Bearer ${process.env.SENTRY_AUTH_TOKEN}`};
+const project=encodeURIComponent(process.env.SENTRY_PROJECT),org=encodeURIComponent(process.env.SENTRY_ORG);
+const request=async path=>{const response=await fetch(`${base}${path}`,{headers});if(!response.ok)throw new Error(`Sentry API ${response.status}: ${await response.text()}`);return response.json()};
+const projectInfo=await request(`/projects/${org}/${project}/`);
+const [issueRules,metricRules]=await Promise.all([request(`/projects/${org}/${project}/rules/`),request(`/organizations/${org}/alert-rules/?project=${projectInfo.id}`)]);
+const enabled=[...issueRules,...metricRules].filter(rule=>rule.status!=='disabled');
+if(enabled.length===0)throw new Error('No enabled Sentry issue or metric alert found');
+console.log(`Sentry project connected; ${enabled.length} enabled alert rule(s) found.`);

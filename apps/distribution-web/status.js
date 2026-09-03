@@ -1,0 +1,4 @@
+const endpoint=document.querySelector('meta[name="health-endpoint"]')?.content||'/functions/v1/health';
+const set=(id,value)=>{document.getElementById(id).textContent=value};
+async function refresh(){try{const response=await fetch(endpoint,{cache:'no-store'}),data=await response.json();set('overall',data.status==='operational'?'Semua sistem operasional':'Layanan mengalami gangguan');set('api',data.checks?.api||'unknown');set('database',data.checks?.database||'unknown');set('payment',data.checks?.paymentWebhook||'unknown');set('checked',`Pemeriksaan terakhir ${new Date(data.checkedAt||Date.now()).toLocaleString('id-ID')} · ${data.latencyMs??'-'} ms`)}catch{set('overall','Status tidak dapat diambil');set('api','unreachable');set('database','unknown');set('payment','unknown')}}
+refresh();setInterval(refresh,60000);

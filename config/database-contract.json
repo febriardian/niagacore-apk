@@ -1,0 +1,72 @@
+{
+  "contractVersion": "2.12.0",
+  "migrationHead": "202609030002_accounting_period_reporting_boundary.sql",
+  "tables": {
+    "nia_model_registry": ["model_key", "category", "status"],
+    "nia_model_versions": ["registry_id", "version", "provider", "status"],
+    "nia_dataset_versions": ["tenant_id", "business_id", "content_hash", "schema_version"],
+    "nia_drift_measurements": ["metric_name", "threshold", "status", "measured_at"],
+    "nia_evaluation_runs": ["provider", "status", "grounding_score", "regression_score"],
+    "observability_job_runs": ["job_name", "status", "trace_id", "root_span_id", "duration_ms"],
+    "observability_spans": ["trace_id", "span_id", "parent_span_id", "kind", "duration_ms"],
+    "qris_recovery_events": ["device_id", "sale_id", "outcome"],
+    "gateway_webhook_events": ["provider", "event_hash", "signature_valid", "processing_status", "received_at"],
+    "platform_admin_invitations": ["email", "role", "status", "invited_by", "expires_at"],
+    "merchant_operating_periods": ["tenant_id", "sequence_no", "started_at", "ended_at", "reason"],
+    "merchant_lifecycle_events": ["tenant_id", "actor_id", "action", "reason", "occurred_at"]
+  },
+  "functions": [
+    "get_nia_governance_dashboard",
+    "get_operational_health",
+    "recover_qris_payment_session",
+    "fail_qris_payment_initialization",
+    "fail_qris_payment_initialization_server",
+    "attach_qris_payment_session_v2",
+    "expire_stale_qris_payments",
+    "calibrate_nia_anomaly_thresholds",
+    "admin_operations_snapshot",
+    "admin_submit_production_gate",
+    "admin_review_production_gate",
+    "admin_create_release_draft",
+    "admin_publish_release_draft",
+    "admin_prepare_refund_retry",
+    "record_gateway_webhook_event",
+    "record_admin_payment_reconciliation",
+    "admin_merchant_detail",
+    "admin_set_device_status",
+    "admin_create_platform_admin_invitation",
+    "complete_platform_admin_invitation",
+    "fail_platform_admin_invitation",
+    "accept_my_platform_admin_invitation",
+    "admin_team_snapshot",
+    "admin_cancel_platform_admin_invitation",
+    "admin_delete_platform_admin",
+    "admin_search_audit_events",
+    "admin_payment_settlement_snapshot",
+    "admin_manage_merchant_lifecycle"
+  ],
+  "mobileRpc": [
+    "get_nia_governance_dashboard",
+    "get_operational_health",
+    "recover_qris_payment_session",
+    "expire_stale_qris_payments"
+  ],
+  "edgeFunctions": [
+    "ai-insights",
+    "nia-evaluator",
+    "notification-dispatch",
+    "create-midtrans-transaction",
+    "sync",
+    "health",
+    "midtrans-webhook",
+    "reconcile-midtrans",
+    "refund-midtrans",
+    "invite-platform-admin"
+  ],
+  "tracedEdgeFunctions": [
+    "nia-evaluator",
+    "notification-dispatch",
+    "create-midtrans-transaction",
+    "sync"
+  ]
+}

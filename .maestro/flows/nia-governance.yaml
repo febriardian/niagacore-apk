@@ -1,0 +1,17 @@
+appId: id.niagacore.app
+name: Kinerja NIA dan proses otomatis
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Lainnya"
+- tapOn: "Kinerja NIA"
+- assertVisible: "Kondisi saat ini"
+- assertVisible: "Ringkasan"
+- tapOn: "Model & data"
+- assertVisible: "MODEL AKTIF|Model belum tersedia"
+- tapOn: "Aktivitas"
+- assertVisible: "PROSES OTOMATIS|Belum ada aktivitas"

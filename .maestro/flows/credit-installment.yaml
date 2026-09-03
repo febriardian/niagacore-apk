@@ -1,0 +1,34 @@
+appId: id.niagacore.app
+name: Utang dan cicilan
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Kasir"
+- runFlow:
+    when:
+      visible: "Buka shift"
+    commands:
+      - tapOn: "Buka shift"
+      - tapOn: "Saldo kas awal"
+      - inputText: "0"
+      - tapOn: "Buka shift"
+- tapOn: ${TEST_PRODUCT}
+- tapOn: "Pilih pembayaran"
+- tapOn: "Pelanggan"
+- tapOn: ${TEST_CUSTOMER}
+- tapOn: "Bayar dengan utang"
+- tapOn: "Dibayar tunai sekarang"
+- inputText: "1000"
+- tapOn: "Simpan transaksi utang"
+- assertVisible: "Transaksi utang berhasil"
+- tapOn: "OK"
+- tapOn: "Bayar utang"
+- tapOn: ${TEST_CUSTOMER}
+- tapOn: "Nominal pembayaran tunai"
+- inputText: "1000"
+- tapOn: "Catat pembayaran"
+- assertVisible: "Pembayaran utang berhasil"

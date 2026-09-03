@@ -1,0 +1,53 @@
+name: Bug report
+description: Laporkan perilaku NiagaCore yang dapat direproduksi.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Jangan sertakan credential, data pelanggan, atau transaksi production.
+  - type: input
+    id: version
+    attributes:
+      label: Versi
+      placeholder: 2.12.0
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Komponen
+      options:
+        [Mobile, Database, Edge Function, Distribution web, CI atau release]
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Deskripsi
+      description: Jelaskan hasil yang diharapkan dan yang terjadi.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Langkah reproduksi
+      placeholder: "1. Buka ...\n2. Pilih ...\n3. Amati ..."
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Versi Android, jenis perangkat/emulator, dan environment aplikasi.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pemeriksaan
+      options:
+        - label: Saya sudah mencari issue serupa.
+          required: true
+        - label: Laporan ini tidak berisi informasi sensitif.
+          required: true

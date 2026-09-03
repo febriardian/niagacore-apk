@@ -1,0 +1,11 @@
+begin;
+select plan(7);
+select has_table('public','platform_payment_configuration','platform payment configuration exists');
+select has_table('public','production_gate_evidence','production evidence registry exists');
+select results_eq($$select payment_model from public.platform_payment_configuration where id$$,$$values('platform_wallet'::text)$$,'platform wallet is final');
+select results_eq($$select environment from public.platform_payment_configuration where id$$,$$values('production'::text)$$,'payment environment is production');
+select has_trigger('public','wallet_ledger','wallet_ledger_append_only','wallet ledger is immutable');
+select has_trigger('public','audit_events','audit_events_append_only','audit log is immutable');
+select results_eq($$select count(*)::bigint from public.production_gate_evidence$$,$$values(11::bigint)$$,'all external gates are registered');
+select * from finish();
+rollback;

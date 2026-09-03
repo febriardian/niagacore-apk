@@ -1,0 +1,7 @@
+node_modules/
+.turbo/
+.expo/
+dist/
+coverage/
+pnpm-lock.yaml
+release-evidence/

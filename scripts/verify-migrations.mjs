@@ -1,0 +1,4 @@
+import {readFile,readdir} from 'node:fs/promises';
+const root=new URL('../supabase/migrations/',import.meta.url);const files=(await readdir(root)).filter(x=>x.endsWith('.sql')).sort();const errors=[];const created=new Map();
+for(const file of files){const sql=await readFile(new URL(file,root),'utf8');if(!/^\s*begin\s*;/i.test(sql)||!/commit\s*;\s*$/i.test(sql))errors.push(`${file}:transaction_boundary`);for(const match of sql.matchAll(/create\s+table\s+(?!if\s+not\s+exists)(?:public\.)?([a-z0-9_]+)/gi)){const table=match[1];if(created.has(table))errors.push(`${file}:duplicate_create_table:${table}:first=${created.get(table)}`);else created.set(table,file)}}
+if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log(`Migration audit passed: ${files.length} ordered migrations.`);

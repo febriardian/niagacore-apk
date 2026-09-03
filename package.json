@@ -1,0 +1,40 @@
+{
+  "name": "niagacore",
+  "version": "2.12.0",
+  "private": true,
+  "packageManager": "pnpm@11.25.0+sha512.5cde925b4f075f725eb71fbae18a42ffe784524789f19b61c731cb8721ec28aaee160e01a8d5af4fedb2a42cdbf300efe23db356b0d4a17b4d63e11f8ab7c956",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "android": "pnpm --filter @niagacore/mobile android",
+    "build:production": "cd apps/mobile && eas build --platform android --profile production",
+    "build:preview": "cd apps/mobile && eas build --platform android --profile preview",
+    "start": "pnpm --filter @niagacore/mobile start",
+    "start:clear": "pnpm --filter @niagacore/mobile start --clear",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "format:check": "prettier --check \"**/*.{md,json,yml,yaml}\"",
+    "check:fresh": "turbo lint typecheck test --force",
+    "migrations:check": "node scripts/verify-migrations.mjs",
+    "database:contract": "node scripts/verify-database-contract.mjs",
+    "release:apk": "node scripts/finalize-apk-release.mjs",
+    "release:audit": "node scripts/release-audit.mjs",
+    "release:evidence": "node scripts/generate-release-evidence.mjs",
+    "production:env-check": "node scripts/production-env-audit.mjs",
+    "architecture:check": "node scripts/verify-mobile-supabase-only.mjs",
+    "backup:restore-drill": "node scripts/backup-restore-drill.mjs",
+    "sentry:alerts-check": "node scripts/verify-sentry-alerts.mjs",
+    "release:check": "pnpm architecture:check && pnpm format:check && pnpm check:fresh && pnpm migrations:check && pnpm database:contract && pnpm release:audit && pnpm release:evidence && pnpm --filter @niagacore/mobile exec expo export --platform android --clear"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.0",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.8",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.10"
+  }
+}

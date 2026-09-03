@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "channel": "production",
+  "manifest": "../releases/release.json"
+}

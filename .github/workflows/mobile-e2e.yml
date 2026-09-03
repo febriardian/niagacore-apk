@@ -1,0 +1,43 @@
+name: Android Maestro E2E
+
+on:
+  workflow_dispatch:
+    inputs:
+      apk_url:
+        description: URL APK staging/signed yang akan diuji
+        required: true
+        type: string
+
+jobs:
+  maestro:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download APK
+        run: curl --fail --location "${{ inputs.apk_url }}" --output niagacore-test.apk
+      - name: Install Maestro
+        run: curl -Ls "https://get.maestro.mobile.dev" | bash
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          script: |
+            adb install -r niagacore-test.apk
+            $HOME/.maestro/bin/maestro test .maestro/critical-path.yaml
+        env:
+          TEST_EMAIL: ${{ secrets.MAESTRO_TEST_EMAIL }}
+          TEST_PASSWORD: ${{ secrets.MAESTRO_TEST_PASSWORD }}
+          TEST_PRODUCT: ${{ vars.MAESTRO_TEST_PRODUCT }}
+          TEST_CUSTOMER: ${{ vars.MAESTRO_TEST_CUSTOMER }}
+          TEST_RECEIPT_NUMBER: ${{ vars.MAESTRO_TEST_RECEIPT_NUMBER }}
+          TEST_SECOND_BRANCH: ${{ vars.MAESTRO_TEST_SECOND_BRANCH }}
+          TEST_BRANCH_BUTTON_INDEX: ${{ vars.MAESTRO_TEST_BRANCH_BUTTON_INDEX }}
+          TEST_REVOCABLE_DEVICE: ${{ vars.MAESTRO_TEST_REVOCABLE_DEVICE }}
+          TEST_DEVICE_BUTTON_INDEX: ${{ vars.MAESTRO_TEST_DEVICE_BUTTON_INDEX }}
+          TEST_SHIFT_CASH: ${{ vars.MAESTRO_TEST_SHIFT_CASH }}
+          TEST_SECOND_BUSINESS: ${{ vars.MAESTRO_TEST_SECOND_BUSINESS }}
+          TEST_BUSINESS_BUTTON_INDEX: ${{ vars.MAESTRO_TEST_BUSINESS_BUTTON_INDEX }}
+          TEST_CASHIER_EMAIL: ${{ secrets.MAESTRO_CASHIER_EMAIL }}
+          TEST_CASHIER_PASSWORD: ${{ secrets.MAESTRO_CASHIER_PASSWORD }}
+          TEST_QRIS_PRODUCT: ${{ vars.MAESTRO_QRIS_PRODUCT }}

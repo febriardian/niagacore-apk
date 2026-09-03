@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "NiagaCore",
+    "slug": "niagacore",
+    "version": "2.12.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "niagacore",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "id.niagacore.app",
+      "versionCode": 69,
+      "permissions": ["POST_NOTIFICATIONS"],
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/images/android-icon-foreground.png"
+      },
+      "predictiveBackGestureEnabled": true
+    },
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "NiagaCore membutuhkan akses galeri untuk memilih foto produk atau bukti transfer pencairan."
+        }
+      ],
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "sounds": []
+        }
+      ],
+      "@sentry/react-native/expo",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFFFFF",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 180
+        }
+      ],
+      "expo-sharing"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1bee5c60-cf8b-4ccb-837c-dfef833a8450"
+      },
+      "router": {}
+    },
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "owner": "niagacore"
+  }
+}

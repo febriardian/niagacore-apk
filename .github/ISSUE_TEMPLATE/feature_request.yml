@@ -1,0 +1,31 @@
+name: Feature request
+description: Usulkan peningkatan yang terukur untuk NiagaCore.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Masalah pengguna
+      description: Jelaskan kebutuhan dan siapa yang mengalaminya.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Usulan
+      description: Jelaskan perilaku yang diinginkan tanpa credential atau data production.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Dampak
+      description: Sebutkan role, modul, schema, keamanan, atau kompatibilitas yang terpengaruh.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pemeriksaan
+      options:
+        - label: Saya sudah mencari usulan serupa.
+          required: true

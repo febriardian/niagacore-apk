@@ -1,0 +1,225 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-08-31T15:09:35.990Z",
+    "component": {
+      "type": "application",
+      "name": "NiagaCore",
+      "version": "2.12.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "@niagacore/contracts",
+      "version": "workspace:*"
+    },
+    {
+      "type": "library",
+      "name": "@niagacore/domain",
+      "version": "workspace:*"
+    },
+    {
+      "type": "library",
+      "name": "@niagacore/i18n",
+      "version": "workspace:*"
+    },
+    {
+      "type": "library",
+      "name": "@niagacore/ui",
+      "version": "workspace:*"
+    },
+    {
+      "type": "library",
+      "name": "@react-native-ml-kit/text-recognition",
+      "version": "2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@sentry/react-native",
+      "version": "^7.11.0"
+    },
+    {
+      "type": "library",
+      "name": "@supabase/supabase-js",
+      "version": "^2.112.2"
+    },
+    {
+      "type": "library",
+      "name": "@tanstack/react-query",
+      "version": "^5.90.2"
+    },
+    {
+      "type": "library",
+      "name": "@types/node",
+      "version": "^24.10.0"
+    },
+    {
+      "type": "library",
+      "name": "eslint",
+      "version": "^9.39.0"
+    },
+    {
+      "type": "library",
+      "name": "expo",
+      "version": "~57.0.13"
+    },
+    {
+      "type": "library",
+      "name": "expo-camera",
+      "version": "~57.0.3"
+    },
+    {
+      "type": "library",
+      "name": "expo-constants",
+      "version": "~57.0.11"
+    },
+    {
+      "type": "library",
+      "name": "expo-crypto",
+      "version": "~57.0.1"
+    },
+    {
+      "type": "library",
+      "name": "expo-device",
+      "version": "~57.0.1"
+    },
+    {
+      "type": "library",
+      "name": "expo-file-system",
+      "version": "~57.0.3"
+    },
+    {
+      "type": "library",
+      "name": "expo-image-picker",
+      "version": "~57.0.12"
+    },
+    {
+      "type": "library",
+      "name": "expo-linking",
+      "version": "~57.0.6"
+    },
+    {
+      "type": "library",
+      "name": "expo-localization",
+      "version": "~57.0.1"
+    },
+    {
+      "type": "library",
+      "name": "expo-notifications",
+      "version": "~57.0.15"
+    },
+    {
+      "type": "library",
+      "name": "expo-print",
+      "version": "~57.0.1"
+    },
+    {
+      "type": "library",
+      "name": "expo-router",
+      "version": "~57.0.13"
+    },
+    {
+      "type": "library",
+      "name": "expo-secure-store",
+      "version": "~57.0.1"
+    },
+    {
+      "type": "library",
+      "name": "expo-sharing",
+      "version": "~57.0.12"
+    },
+    {
+      "type": "library",
+      "name": "expo-splash-screen",
+      "version": "~57.0.6"
+    },
+    {
+      "type": "library",
+      "name": "expo-status-bar",
+      "version": "~57.0.1"
+    },
+    {
+      "type": "library",
+      "name": "i18next",
+      "version": "^25.6.0"
+    },
+    {
+      "type": "library",
+      "name": "prettier",
+      "version": "^3.6.2"
+    },
+    {
+      "type": "library",
+      "name": "qrcode",
+      "version": "^1.5.4"
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "19.2.3"
+    },
+    {
+      "type": "library",
+      "name": "react-hook-form",
+      "version": "^7.85.0"
+    },
+    {
+      "type": "library",
+      "name": "react-i18next",
+      "version": "^16.2.0"
+    },
+    {
+      "type": "library",
+      "name": "react-native",
+      "version": "0.86.2"
+    },
+    {
+      "type": "library",
+      "name": "react-native-qrcode-svg",
+      "version": "^6.3.21"
+    },
+    {
+      "type": "library",
+      "name": "react-native-safe-area-context",
+      "version": "~5.7.0"
+    },
+    {
+      "type": "library",
+      "name": "react-native-screens",
+      "version": "~4.26.0"
+    },
+    {
+      "type": "library",
+      "name": "react-native-svg",
+      "version": "^15.15.4"
+    },
+    {
+      "type": "library",
+      "name": "turbo",
+      "version": "^2.5.8"
+    },
+    {
+      "type": "library",
+      "name": "typescript",
+      "version": "~6.0.3"
+    },
+    {
+      "type": "library",
+      "name": "vitest",
+      "version": "^4.1.10"
+    },
+    {
+      "type": "library",
+      "name": "zod",
+      "version": "^4.1.12"
+    },
+    {
+      "type": "library",
+      "name": "zustand",
+      "version": "^5.0.8"
+    }
+  ]
+}

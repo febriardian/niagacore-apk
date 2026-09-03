@@ -1,0 +1,32 @@
+name: Production readiness drills
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 18 * * 0"
+
+jobs:
+  backup-restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y postgresql-client
+      - run: node scripts/backup-restore-drill.mjs
+        env:
+          BACKUP_DATABASE_URL: ${{ secrets.BACKUP_DATABASE_URL }}
+          RESTORE_DATABASE_URL: ${{ secrets.ISOLATED_RESTORE_DATABASE_URL }}
+          CONFIRM_ISOLATED_RESTORE: "YES"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backup-restore-evidence
+          path: release-evidence/backup-restore-drill.json
+          if-no-files-found: error
+  sentry-alerts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/verify-sentry-alerts.mjs
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ vars.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT }}

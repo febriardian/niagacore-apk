@@ -1,0 +1,16 @@
+begin;
+select plan(12);
+select has_function('public','accept_my_platform_admin_invitation',array[]::text[],'invitee acceptance RPC exists');
+select has_function('public','admin_team_snapshot',array[]::text[],'admin team snapshot exists');
+select has_function('public','admin_cancel_platform_admin_invitation',array['uuid','text'],'super admin can cancel pending invitation');
+select has_function('public','admin_delete_platform_admin',array['uuid','text'],'super admin access deletion exists');
+select is(has_function_privilege('authenticated','public.accept_my_platform_admin_invitation()','execute'),true,'authenticated invitee can accept own matching invite');
+select is(has_function_privilege('anon','public.accept_my_platform_admin_invitation()','execute'),false,'anonymous user cannot accept invite');
+select is(has_function_privilege('authenticated','public.admin_team_snapshot()','execute'),true,'admin team view is callable and server-authorized');
+select is(has_function_privilege('authenticated','public.admin_cancel_platform_admin_invitation(uuid,text)','execute'),true,'cancel RPC is callable and server-authorized');
+select is(has_function_privilege('authenticated','public.admin_delete_platform_admin(uuid,text)','execute'),true,'delete access RPC is callable and server-authorized');
+select is(has_function_privilege('anon','public.admin_delete_platform_admin(uuid,text)','execute'),false,'anonymous user cannot delete admin access');
+select has_column('public','platform_admin_invitations','accepted_at','acceptance time is persisted');
+select has_column('public','platform_admin_invitations','invited_user_id','invited auth user is attributable');
+select * from finish();
+rollback;

@@ -1,0 +1,15 @@
+appId: id.niagacore.app
+name: Cakupan laporan seluruh cabang
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Laporan"
+- assertVisible: "CAKUPAN SELURUH LAPORAN"
+- tapOn: "Semua cabang"
+- assertVisible: "Semua angka, termasuk jurnal dan laporan keuangan.*"
+- tapOn: "Laba rugi"
+- assertVisible: "Laporan akuntansi mengikuti cakupan yang sama: semua cabang.*"

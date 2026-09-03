@@ -1,0 +1,19 @@
+appId: id.niagacore.app
+name: Pencabutan perangkat
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Lainnya"
+- tapOn: "Perangkat login"
+- assertVisible: ${TEST_REVOCABLE_DEVICE}
+- tapOn:
+    text: "Cabut akses perangkat"
+    index: ${TEST_DEVICE_BUTTON_INDEX}
+- tapOn: "Cabut"
+- extendedWaitUntil:
+    visible: "revoked"
+    timeout: 10000

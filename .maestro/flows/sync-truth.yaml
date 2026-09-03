@@ -1,0 +1,16 @@
+appId: id.niagacore.app
+name: Status sinkronisasi nyata
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Pengaturan"
+- scrollUntilVisible:
+    element:
+      text: "KONEKSI & KONFLIK SERVER"
+    direction: DOWN
+- assertVisible: "KONEKSI & KONFLIK SERVER"
+- assertVisible: "Status nyata untuk.*"

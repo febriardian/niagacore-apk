@@ -1,0 +1,32 @@
+appId: id.niagacore.app
+name: Pemulihan pembayaran QRIS
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Kasir"
+- runFlow:
+    when:
+      visible: "Buka shift"
+    commands:
+      - tapOn: "Buka shift"
+      - tapOn: "Saldo kas awal"
+      - inputText: "0"
+      - tapOn: "Buka shift"
+- tapOn: ${TEST_QRIS_PRODUCT}
+- tapOn: "Pilih pembayaran"
+- tapOn: "Bayar QRIS"
+- extendedWaitUntil:
+    visible: "Bayar dengan QRIS"
+    timeout: 20000
+- assertVisible: "Nomor struk"
+- stopApp
+- launchApp
+- tapOn: "Kasir"
+- extendedWaitUntil:
+    visible: "Bayar dengan QRIS"
+    timeout: 20000
+- assertVisible: "Periksa sekarang"

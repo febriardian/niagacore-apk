@@ -1,0 +1,18 @@
+appId: id.niagacore.app
+name: Pergantian cabang
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Lainnya"
+- tapOn: "Usaha & cabang"
+- assertVisible: "Usaha & cabang"
+- tapOn:
+    text: "Gunakan cabang ini"
+    index: ${TEST_BRANCH_BUTTON_INDEX}
+- extendedWaitUntil:
+    visible: ${TEST_SECOND_BRANCH}
+    timeout: 10000

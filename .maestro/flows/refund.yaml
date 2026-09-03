@@ -1,0 +1,17 @@
+appId: id.niagacore.app
+name: Refund transaksi
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Lainnya"
+- tapOn: "Riwayat transaksi"
+- tapOn: ${TEST_RECEIPT_NUMBER}
+- assertVisible: "Retur transaksi"
+- tapOn: "Alasan wajib"
+- inputText: "Pengujian retur E2E"
+- tapOn: "Proses retur"
+- assertVisible: "Retur dicatat|Retur QRIS diproses"

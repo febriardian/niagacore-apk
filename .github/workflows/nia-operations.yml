@@ -1,0 +1,37 @@
+name: NIA scheduled evaluation
+
+on:
+  schedule:
+    - cron: "15 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Run grounding, regression, and calibration evaluation
+        env:
+          FUNCTIONS_URL: ${{ secrets.SUPABASE_FUNCTIONS_URL }}
+          NIA_CRON_SECRET: ${{ secrets.NIA_EVALUATION_CRON_SECRET }}
+          FORCE_RUN: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          test -n "$FUNCTIONS_URL"
+          test -n "$NIA_CRON_SECRET"
+          if [ "$FORCE_RUN" = "true" ]; then
+            REQUEST_BODY='{"source":"github-manual","force":true}'
+          else
+            REQUEST_BODY='{"source":"github-schedule","force":false}'
+          fi
+          curl --fail-with-body --retry 2 --max-time 900 \
+            -X POST "$FUNCTIONS_URL/nia-evaluator" \
+            -H "content-type: application/json" \
+            -H "x-nia-cron-secret: $NIA_CRON_SECRET" \
+            -d "$REQUEST_BODY" \
+            --output nia-evaluation-result.json
+      - name: Save evaluation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: nia-evaluation-${{ github.run_id }}
+          path: nia-evaluation-result.json
+          retention-days: 30

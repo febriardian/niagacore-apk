@@ -1,0 +1,15 @@
+appId: id.niagacore.app
+name: Batas akses kasir
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login-cashier.yaml
+- assertVisible: "Kasir"
+- assertNotVisible: "Laporan"
+- assertNotVisible: "Produk"
+- tapOn: "Lainnya"
+- assertNotVisible: "Staf & akses"
+- assertNotVisible: "Perangkat login"

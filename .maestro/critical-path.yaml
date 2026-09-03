@@ -1,0 +1,19 @@
+appId: id.niagacore.app
+name: NiagaCore production critical paths
+tags:
+  - release
+---
+- runFlow: flows/pos-cash.yaml
+- runFlow: flows/credit-installment.yaml
+- runFlow: flows/shift.yaml
+- runFlow: flows/refund.yaml
+- runFlow: flows/branch-switch.yaml
+- runFlow: flows/device-revocation.yaml
+- runFlow: flows/report-scope.yaml
+- runFlow: flows/business-switch.yaml
+- runFlow: flows/cashier-role-boundary.yaml
+- runFlow: flows/qris-recovery.yaml
+- runFlow: flows/sync-truth.yaml
+- runFlow: flows/hardware-baseline.yaml
+- runFlow: flows/operational-health.yaml
+- runFlow: flows/nia-governance.yaml

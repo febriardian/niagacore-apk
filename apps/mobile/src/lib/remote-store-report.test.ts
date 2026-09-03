@@ -1,0 +1,5 @@
+import {describe,expect,it} from "vitest";
+import {mergeDashboardAnalytics,type DashboardAnalytics} from "./report-aggregation";
+
+const row=(amount:number,count:number):DashboardAnalytics=>({dailySales:[{label:"2026-08-30",amountMinor:amount,transactions:count}],topProducts:[{name:"Produk",quantity:count,revenueMinor:amount}],paymentMix:[{method:"cash",amountMinor:amount}],grossSalesMinor:amount,costMinor:amount/2,expenseMinor:0,profitMinor:amount/2,receivableMinor:0,payableMinor:0,lowStockCount:1,previousGrossSalesMinor:0,transactionCount:count,averageTicketMinor:amount/count,periodDays:7});
+describe("mergeDashboardAnalytics",()=>{it("menggabungkan cabang tanpa merata-ratakan total",()=>{const result=mergeDashboardAnalytics([row(20_000,1),row(80_000,4)],7);expect(result.grossSalesMinor).toBe(100_000);expect(result.transactionCount).toBe(5);expect(result.averageTicketMinor).toBe(20_000);expect(result.dailySales[0]).toEqual({label:"2026-08-30",amountMinor:100_000,transactions:5});expect(result.lowStockCount).toBe(2)})});

@@ -1,0 +1,23 @@
+appId: id.niagacore.app
+name: POS tunai
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "Masuk"
+    file: _login.yaml
+- tapOn: "Kasir"
+- runFlow:
+    when:
+      visible: "Buka shift"
+    commands:
+      - tapOn: "Buka shift"
+      - tapOn: "Saldo kas awal"
+      - inputText: "0"
+      - tapOn: "Buka shift"
+- tapOn: ${TEST_PRODUCT}
+- tapOn: "Pilih pembayaran"
+- tapOn: "Bayar tunai"
+- assertVisible: "Pembayaran berhasil|Transaksi berhasil"
+- tapOn: "Selesai|OK"

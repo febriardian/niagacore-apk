@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "channel": "production",
+  "manifest": "../releases/release.json",
+  "packageName": "id.niagacore.app"
+}
