@@ -30,11 +30,11 @@
     "release:check": "pnpm architecture:check && pnpm format:check && pnpm check:fresh && pnpm migrations:check && pnpm database:contract && pnpm release:audit && pnpm release:evidence && pnpm --filter @niagacore/mobile exec expo export --platform android --clear"
   },
   "devDependencies": {
-    "@types/node": "^24.10.0",
-    "eslint": "^9.39.0",
+    "@types/node": "^26.4.0",
+    "eslint": "^10.9.1",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.8",
-    "typescript": "~6.0.3",
-    "vitest": "^4.1.10"
+    "turbo": "^2.10.12",
+    "typescript": "~7.0.2",
+    "vitest": "^4.1.11"
   }
 }
