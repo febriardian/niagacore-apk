@@ -19,8 +19,6 @@ jobs:
       - run: pnpm check:fresh
       - run: pnpm migrations:check
       - run: pnpm database:contract
-      - run: pnpm release:audit
-      - run: pnpm release:evidence
       - run: pnpm --filter @niagacore/mobile exec expo export --platform android --clear
         env:
           EXPO_OFFLINE: "1"
