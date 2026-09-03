@@ -29,7 +29,7 @@ jobs:
           curl --fail --location "$(cat apk-url.txt)" --output NiagaCore-2.12.0.apk
       - uses: android-actions/setup-android@v3
       - run: pnpm release:apk ./NiagaCore-2.12.0.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: NiagaCore-2.12.0-signed
           path: |
