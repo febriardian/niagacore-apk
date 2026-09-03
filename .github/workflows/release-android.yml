@@ -25,7 +25,7 @@ jobs:
         run: |
           node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('apps/mobile/eas-build.json'));const b=Array.isArray(j)?j[0]:j;const u=b.artifacts?.buildUrl;if(!u)throw Error('APK URL missing');fs.writeFileSync('apk-url.txt',u)"
           curl --fail --location "$(cat apk-url.txt)" --output NiagaCore-2.12.0.apk
-      - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v4
       - run: pnpm release:apk ./NiagaCore-2.12.0.apk
       - uses: actions/upload-artifact@v4
         with:
