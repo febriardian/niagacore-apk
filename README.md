@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./apps/mobile/assets/images/logo.png" alt="Logo NiagaCore" width="120" />
+  <img src="./apps/mobile/assets/images/icon1.png" alt="Logo NiagaCore" width="120" />
 
 # NiagaCore Mobile
 
