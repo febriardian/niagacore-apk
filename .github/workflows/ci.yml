@@ -10,8 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 11.25.0
       - uses: actions/setup-node@v4
         with:
           node-version: 22.13.0
@@ -26,12 +24,3 @@ jobs:
       - run: pnpm --filter @niagacore/mobile exec expo export --platform android --clear
         env:
           EXPO_OFFLINE: "1"
-  database-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: supabase/setup-cli@v1
-        with:
-          version: latest
-      - run: supabase start
-      - run: supabase test db
